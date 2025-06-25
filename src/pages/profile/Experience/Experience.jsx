@@ -85,10 +85,10 @@ if(experienceList.length>0){
               <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-800">
-                  {exp.companyName || "Company Name"}
+                  {exp.companyName || exp.careerBreakType || "Company Name"}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  {exp.role || "Role"} ({exp.location || "Location"})
+                  {exp.role || ""} ({exp.location || "Location"})
                 </p>
                 <p className="text-sm text-gray-500">
                   {formatDate(exp.startDate) || "Start Date"} - {formatDate(exp.endDate) || "End Date"}

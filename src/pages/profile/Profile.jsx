@@ -15,6 +15,9 @@ import UpdateServiceForm from "./Services/UpdateServiceForm";
 import Service from "./Services/Service";
 import EditIntroForm from "./EditIntroForm"; // Import EditIntroForm
 import { User } from "lucide-react";
+import AddCareerBreakForm from "./CareerBreak/AddCareerBreakForm";
+import AddSkillForm from "./Skills/AddSkillForm";
+import Skilll from "./Skills/Skilll";
 
 function Profile() {
   const [serviceList, setServiceList] = useState([]);
@@ -226,6 +229,8 @@ function Profile() {
           {/* Experience */}
           <Experience experienceList={experienceList} />
 
+          {/* Skills Section */}
+          <Skilll />
           {/* Service Section */}
           <Service />
         </div>
@@ -262,6 +267,24 @@ function Profile() {
           onSuccess={
             (newExperience) =>
               setExperienceList((prev) => [...prev, newExperience]) // Update the experience list
+          }
+        />
+      )}
+      {activeForm === "career-break" && (
+        <AddCareerBreakForm
+          onClose={handleCloseForm}
+          onSuccess={
+            (newExperience) =>
+              setExperienceList((prev) => [...prev, newExperience]) // Update the experience list
+          }
+        />
+      )}
+      {activeForm === "skills" && (
+        <AddSkillForm
+          onClose={handleCloseForm}
+          onSuccess={
+            (newAboutText) =>
+              setUser((prev) => ({ ...prev, about: newAboutText })) // Update the "about" field in the user state
           }
         />
       )}

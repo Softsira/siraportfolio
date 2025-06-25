@@ -9,6 +9,8 @@ import ExperienceList from "./pages/profile/Experience/ExperienceList";
 import About from "./pages/profile/About/About";
 import AdminLanding from "./pages/Admin/AdminLanding";
 import ServiceList from "./pages/profile/Services/ServiceList";
+import CareerBreakCategory from "./pages/Admin/CareerBreakCategory/CareerBreakCategory";
+import SkillsList from "./pages/profile/Skills/SkillsList";
 
 
 function App() {
@@ -27,7 +29,8 @@ function App() {
           <Route path="/educations" element={<EducationList />} />
           <Route path="/experiences" element={<ExperienceList />} /> 
           <Route path="/serviceList" element= {<ServiceList />} />
-
+          <Route path="/careerBreakCategory" element= {<CareerBreakCategory />} />
+          <Route path="/skills" element={<SkillsList />} />
         </Routes>
      </BrowserRouter> 
     </>

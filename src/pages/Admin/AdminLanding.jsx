@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { CheckCircle, Settings, Database, UserCircle, Globe, BarChart2, DollarSign, LogOut, FileText, LocateIcon} from 'lucide-react';
+import { CheckCircle, Settings, Database, UserCircle, Globe, BarChart2, DollarSign, LogOut, FileText, LocateIcon, MegaphoneOff, Brain} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Country from './CountryMaster/Country';
 import GeoManagement from './GeoManagement/GeoManagement';
 import ServiceManagement from './ServiceManagement/ServiceManagement';
+import CareerBreakCategory from './CareerBreakCategory/CareerBreakCategory';
+import SkillManagement from './SkillManagement/SkillManagement';
 
 export default function AdminLanding() {
   const [selectedItem, setSelectedItem] = useState('Dashboard');
@@ -12,8 +14,10 @@ export default function AdminLanding() {
     { name: 'Dashboard', icon: <div className="w-6 h-6" /> },
     { name: 'User Management', icon: <UserCircle className="w-6 h-6" /> },
     { name: 'Services Management', icon: <DollarSign className="w-6 h-6" />},
+    { name: 'Skill Management', icon: <Brain className="w-6 h-6"/>},
     { name: 'Country Master', icon: <Globe className="w-6 h-6" /> },
     { name: 'Geo Management', icon: <LocateIcon className="w-6 h-6" /> },
+    { name: 'Career Break', icon: <MegaphoneOff className="w-6 h-6" /> },
     { name: 'System Settings', icon: <Settings className="w-6 h-6" /> },
     { name: 'Database Management', icon: <Database className="w-6 h-6" /> },
     { name: 'Analytics', icon: <BarChart2 className="w-6 h-6" /> },
@@ -98,12 +102,20 @@ export default function AdminLanding() {
       return (
         <ServiceManagement />
       );
-    } else if (selectedItem === "Country Master") {
+    }else if (selectedItem === "Skill Management") {
+      return (
+        <SkillManagement />
+      );}
+       else if (selectedItem === "Country Master") {
       return <Country />;
     } else if (selectedItem === "Geo Management") {
       return (
           <GeoManagement />
       );
+    }else if(selectedItem === "Career Break"){
+      return(
+        <CareerBreakCategory />
+      )
     } else if (selectedItem === "System Settings") {
       return (
         <div>

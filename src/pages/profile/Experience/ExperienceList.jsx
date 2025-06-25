@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import UpdateExperienceForm from "./UpdateExperienceForm";
 import ConfirmationModal from "../../../components/ConfirmationModal";
+import UpdateCareerBreakForm from "../CareerBreak/UpdateCareerBreakForm";
 
 function ExperienceList() {
   const navigate = useNavigate();
@@ -114,10 +115,10 @@ function ExperienceList() {
                 <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800">
-                    {exp.companyName || "Company Name"}
+                    {exp.companyName || exp.careerBreakType || "Company Name"}
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {exp.role || "Role"} ({exp.location || "Location"})
+                    {exp.role || ""} ({exp.location || "Location"})
                   </p>
                   <p className="text-sm text-gray-500">
                     {formatDate(exp.startDate) || "Start Date"} -{" "}
@@ -147,12 +148,20 @@ function ExperienceList() {
           )}
         </div>
       </div>
-      {isUpdateFormOpen && selectedExperience && (
-        <UpdateExperienceForm
-          experience={selectedExperience}
-          onClose={() => setIsUpdateFormOpen(false)}
-          onUpdate={handleUpdate}
-        />
+     {isUpdateFormOpen && selectedExperience && (
+        selectedExperience.isOnBreak ? ( // Conditional rendering based on isOnBreak
+          <UpdateCareerBreakForm
+            experience={selectedExperience}
+            onClose={() => setIsUpdateFormOpen(false)}
+            onUpdate={handleUpdate} // You might need a separate handleUpdate for career breaks
+          />
+        ) : (
+          <UpdateExperienceForm
+            experience={selectedExperience}
+            onClose={() => setIsUpdateFormOpen(false)}
+            onUpdate={handleUpdate}
+          />
+        )
       )}
       {isDeleteModalOpen && (
         <ConfirmationModal
