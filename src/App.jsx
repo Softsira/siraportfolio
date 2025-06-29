@@ -30,6 +30,7 @@ function App() {
           <Route path="/experiences" element={<ExperienceList />} /> 
           <Route path="/serviceList" element= {<ServiceList />} />
           <Route path="/careerBreakCategory" element= {<CareerBreakCategory />} />
+          
           <Route path="/skills" element={<SkillsList />} />
         </Routes>
      </BrowserRouter> 
