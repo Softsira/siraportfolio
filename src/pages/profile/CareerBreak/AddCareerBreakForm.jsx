@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../../constant";
 
 function AddCareerBreakForm({ onClose, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ function AddCareerBreakForm({ onClose, onSuccess }) {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5001/api/v1/admin/careerBreakCategory",
+         `${API_BASE_URL}/admin/careerBreakCategory`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -63,7 +64,7 @@ function AddCareerBreakForm({ onClose, onSuccess }) {
     try {
       const token = localStorage.getItem("token"); // Get the token from localStorage
       const response = await axios.post(
-        "http://localhost:5001/api/v1/user/addExperience",
+        `${API_BASE_URL}/user/addExperience`,
         formData,
         {
           headers: {

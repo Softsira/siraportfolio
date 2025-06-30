@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import UpdateExperienceForm from "./UpdateExperienceForm";
 import ConfirmationModal from "../../../components/ConfirmationModal";
 import UpdateCareerBreakForm from "../CareerBreak/UpdateCareerBreakForm";
+import { API_BASE_URL } from "../../../constant";
 
 function ExperienceList() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ function ExperienceList() {
     try {
       const token = localStorage.getItem("token"); // Get the token from localStorage
       const response = await axios.delete(
-        `http://localhost:5001/api/v1/user/deleteExperience/${id}`, // Use the experience ID in the URL
+        `${API_BASE_URL}/user/deleteExperience/${id}`, // Use the experience ID in the URL
         {
           headers: {
             Authorization: `Bearer ${token}`, // Include the token in the Authorization header
@@ -69,7 +70,7 @@ function ExperienceList() {
       const { _id, ...formData } = updatedExperience; // Extract _id and the rest of the data
       const token = localStorage.getItem("token"); // Get the token from localStorage
       const response = await axios.put(
-        `http://localhost:5001/api/v1/user/updateExperience/${_id}`, // Use the experience ID
+        `${API_BASE_URL}/user/updateExperience/${_id}`, // Use the experience ID
         formData,
         {
           headers: {

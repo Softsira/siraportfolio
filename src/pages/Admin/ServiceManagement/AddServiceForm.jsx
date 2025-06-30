@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../../../constant';
 
 export default function AddServiceForm({ 
   type, 
@@ -16,7 +17,7 @@ export default function AddServiceForm({
   const [loading, setLoading] = useState(false);
 
     // API base URL
-  const API_URL = "http://localhost:5001/api/v1/admin";
+  const API_URL = `${API_BASE_URL}/admin`;
   
   // Get authorization token
   const getToken = () => localStorage.getItem("token");

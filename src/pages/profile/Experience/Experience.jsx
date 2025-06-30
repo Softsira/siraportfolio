@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AddExperienceForm from "./AddExperienceForm";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../../constant";
 
 function Experience() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Experience() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:5001/api/v1/user/experienceList",
+        `${API_BASE_URL}/user/experienceList`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

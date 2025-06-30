@@ -18,6 +18,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 import UpdateServiceForm from "./UpdateServiceForm";
+import { API_BASE_URL } from "../../../constant";
 
 export default function ServiceList() {
   const user = JSON.parse(sessionStorage.getItem("user"));
@@ -53,7 +54,7 @@ export default function ServiceList() {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5001/api/v1/user/services",
+          `${API_BASE_URL}/user/services`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

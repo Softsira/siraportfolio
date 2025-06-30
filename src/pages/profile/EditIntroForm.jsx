@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../constant";
 
 export default function EditIntroForm({
   onClose,
@@ -51,7 +52,7 @@ export default function EditIntroForm({
       const token = localStorage?.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5001/api/v1/admin/countryList",
+        `${API_BASE_URL}/admin/countryList`,
         {
           method: "GET",
           headers: {
@@ -89,7 +90,7 @@ export default function EditIntroForm({
       const token = localStorage?.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5001/api/v1/admin/cityList?country=${countryId}`,
+        `${API_BASE_URL}/admin/cityList?country=${countryId}`,
         {
           method: "GET",
           headers: {
@@ -328,7 +329,7 @@ export default function EditIntroForm({
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5001/api/v1/user/updateUserIntro",
+        `${API_BASE_URL}/user/updateUserIntro`,
         {
           method: "PUT",
           headers: {

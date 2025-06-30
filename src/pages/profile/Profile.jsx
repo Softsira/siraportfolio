@@ -20,6 +20,7 @@ import Skilll from "./Skills/Skilll";
 import ImageUpload from "../../components/ImageUpload"; // Import the ImageUpload component
 import { getDefaultAvatar, getDefaultBanner } from "../../utils/imageUtils"; // Import default images
 import { User } from "lucide-react";
+import { API_BASE_URL } from "../../constant";
 
 function Profile() {
   const [serviceList, setServiceList] = useState([]);
@@ -42,7 +43,7 @@ function Profile() {
       }
       try {
         const response = await axios.get(
-          "http://localhost:5001/api/v1/user/me",
+          `${API_BASE_URL}/user/me`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -53,7 +54,7 @@ function Profile() {
         sessionStorage.setItem("user", User);
         
         const educationResponse = await axios.get(
-          "http://localhost:5001/api/v1/user/educationList",
+          `${API_BASE_URL}/user/educationList`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -71,7 +72,7 @@ function Profile() {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5001/api/v1/user/services",
+           `${API_BASE_URL}/user/services`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -91,7 +92,7 @@ function Profile() {
       }
       try {
         const response = await axios.get(
-          "http://localhost:5001/api/v1/user/userIntro",
+          `${API_BASE_URL}/user/userIntro`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setUserIntro(response.data.data);
@@ -121,7 +122,7 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        "http://localhost:5001/api/v1/user/updateProfilePicture",
+        `${API_BASE_URL}/user/updateProfilePicture`,
         { profilePicture: base64Image },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -148,7 +149,7 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        "http://localhost:5001/api/v1/user/updateBannerImage",
+        `${API_BASE_URL}/user/updateBannerImage`,
         { bannerImage: base64Image },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import AddStateForm from "./AddStateForm";
 import UpdatestateForm from "./UpdateStateForm";
 import ConfirmationModal from "../../../../components/ConfirmationModal";
+import { API_BASE_URL } from "../../../../constant";
 
 export default function StateList({ selectedCountry, searchTerm }) {
   const [states, setStates] = useState([]);
@@ -40,7 +41,7 @@ const handleAddState = (newState) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5001/api/v1/admin/deleteState/${stateId}`,
+        `${API_BASE_URL}/admin/deleteState/${stateId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +69,7 @@ const fetchStates = async () => {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      `http://localhost:5001/api/v1/admin/stateList?country=${selectedCountry._id}`,
+      `${API_BASE_URL}/admin/stateList?country=${selectedCountry._id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import UpdateEducationForm from "./UpdateEducationForm";
 import ConfirmationModal from "../../../components/ConfirmationModal";
+import { API_BASE_URL } from "../../../constant";
 
 function EducationList() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ function EducationList() {
     try {
       const token = localStorage.getItem("token"); // Get the token from localStorage
       const response = await axios.delete(
-        `http://localhost:5001/api/v1/user/deleteEducation/${id}`, // Use the education ID in the URL
+        `${API_BASE_URL}/user/deleteEducation/${id}`, // Use the education ID in the URL
         {
           headers: {
             Authorization: `Bearer ${token}`, // Include the token in the Authorization header
@@ -68,7 +69,7 @@ function EducationList() {
       const { _id, ...formData } = updatedEducation; // Extract _id and the rest of the data
       const token = localStorage.getItem("token"); // Get the token from localStorage
       const response = await axios.put(
-        `http://localhost:5001/api/v1/user/updateEducation/${_id}`, // Use the education ID
+        `${API_BASE_URL}/user/updateEducation/${_id}`, // Use the education ID
         formData,
         {
           headers: {

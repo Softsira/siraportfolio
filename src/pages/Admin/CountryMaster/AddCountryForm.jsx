@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../../constant";
 
 function AddCountryForm({ onClose, onSuccess }) {
 const [isActive, setIsActive] = useState(true);
@@ -25,7 +26,11 @@ const [isActive, setIsActive] = useState(true);
     try {
       const token = localStorage.getItem("token"); // Get the token from localStorage
       const response = await axios.post(
-        "http://localhost:5001/api/v1/admin/addCountry",
+        `${API_BASE_URL
+
+
+          
+        }/admin/addCountry`,
         formData,
         {
           headers: {

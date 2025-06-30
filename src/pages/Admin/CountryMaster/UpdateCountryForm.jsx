@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Edit } from "lucide-react";
+import { API_BASE_URL } from "../../../constant";
 
 export default function UpdateCountryForm({ country, onClose, onSuccess }) {
   const [formData, setFormData] = useState({
@@ -48,7 +49,7 @@ export default function UpdateCountryForm({ country, onClose, onSuccess }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:5001/api/v1/admin/updateCountry/${country._id}`,
+        `${API_BASE_URL}/admin/updateCountry/${country._id}`,
         {
           ...formData,
         },

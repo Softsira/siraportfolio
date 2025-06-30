@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AddSkillForm from "./AddSkillForm";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { API_BASE_URL } from "../../../constant";
 
 export default function SkillsList() {
   const location = useLocation();
@@ -15,7 +16,7 @@ export default function SkillsList() {
       const token = localStorage.getItem("token");
       const updatedSkills = skills.filter((s) => s.name !== name);
       await axios.put(
-        "http://localhost:5001/api/v1/user/updateAbout",
+        `${API_BASE_URL}/user/updateAbout`,
         { skills: updatedSkills },
         { headers: { Authorization: `Bearer ${token}` } }
       );

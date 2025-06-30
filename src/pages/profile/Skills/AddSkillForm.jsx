@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../../constant";
 
 export default function AddSkillForm({ onClose, onSuccess }) {
   const [skill, setSkill] = useState("");
@@ -14,10 +15,10 @@ export default function AddSkillForm({ onClose, onSuccess }) {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
       const [aboutRes, skillsRes] = await Promise.all([
-        axios.get("http://localhost:5001/api/v1/user/about", {
+        axios.get(`${API_BASE_URL}/user/about`, {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        axios.get("http://localhost:5001/api/v1/admin/skillList", {
+        axios.get(`${API_BASE_URL}/admin/skillList`, {
           headers: { Authorization: `Bearer ${token}` }
         })
       ]);
@@ -74,7 +75,7 @@ export default function AddSkillForm({ onClose, onSuccess }) {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "http://localhost:5001/api/v1/user/updateAbout",
+        `${API_BASE_URL}/user/updateAbout`,
         {
           ...about,
           skills: selectedSkills,

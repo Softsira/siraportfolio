@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../../constant";
 
 export default function CareerBreakCategory() {
   const [categories, setCategories] = useState([]);
@@ -11,7 +12,7 @@ export default function CareerBreakCategory() {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5001/api/v1/admin/careerBreakCategory", {
+      const res = await axios.get(`${API_BASE_URL}/admin/careerBreakCategory`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(res.data.data);
@@ -30,14 +31,14 @@ export default function CareerBreakCategory() {
     try {
       if (editingCategory) {
         await axios.put(
-          `http://localhost:5001/api/v1/admin/updatecareerBreakCategory/${editingCategory._id}`,
+          `${API_BASE_URL}/admin/updatecareerBreakCategory/${editingCategory._id}`,
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         toast.success("Category updated");
       } else {
         await axios.post(
-          "http://localhost:5001/api/v1/admin/addcareerBreakCategory",
+          `${API_BASE_URL}/admin/addcareerBreakCategory`,
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -56,7 +57,7 @@ export default function CareerBreakCategory() {
     const token = localStorage.getItem("token");
     try {
       await axios.delete(
-        `http://localhost:5001/api/v1/admin/deletecareerBreakCategory/${id}`,
+        `${API_BASE_URL}/admin/deletecareerBreakCategory/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Category deleted");

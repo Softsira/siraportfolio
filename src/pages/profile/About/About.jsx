@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import UpdateAboutForm from "./UpdateAboutForm";
+import { API_BASE_URL } from "../../../constant";
 
 function About() {
   const [aboutText, setAboutText] = useState("");
@@ -10,7 +11,7 @@ function About() {
   const fetchAbout = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5001/api/v1/user/about", {
+      const response = await axios.get(`${API_BASE_URL}/user/about`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAboutText(response.data.data.aboutText || ""); // Set the about text
@@ -33,7 +34,7 @@ function About() {
       if (updatedText.trim() === "") {
         // If the text is empty, delete the about section
         const res = await axios.delete(
-          "http://localhost:5001/api/v1/user/deleteAbout",
+          `${API_BASE_URL}/user/deleteAbout`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -43,7 +44,7 @@ function About() {
       } else {
         // Otherwise update it
         const response = await axios.put(
-          "http://localhost:5001/api/v1/user/updateAbout",
+          `${API_BASE_URL}/user/updateAbout`,
           { aboutText: updatedText },
           {
             headers: { Authorization: `Bearer ${token}` },

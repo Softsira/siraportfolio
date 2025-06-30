@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../../constant";
 
 export default function SkillManagement() {
   const [skills, setSkills] = useState([]);
@@ -12,7 +13,7 @@ export default function SkillManagement() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:5001/api/v1/admin/skillList",
+         `${API_BASE_URL}/admin/skillList`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -33,13 +34,13 @@ export default function SkillManagement() {
     try {
       if (editingSkill) {
         await axios.put(
-          `http://localhost:5001/api/v1/admin/updateSkill/${editingSkill._id}`,
+          `${API_BASE_URL}/admin/updateSkill/${editingSkill._id}`,
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         toast.success("Skill updated");
       } else {
-        await axios.post("http://localhost:5001/api/v1/admin/addSkill", form, {
+        await axios.post(`${API_BASE_URL}/admin/addSkill`, form, {
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success("Skill added");
@@ -57,7 +58,7 @@ export default function SkillManagement() {
     const token = localStorage.getItem("token");
     try {
       await axios.delete(
-        `http://localhost:5001/api/v1/admin/deleteSkill/${id}`,
+        `${API_BASE_URL}/admin/deleteSkill/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Skill deleted");

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../../../constant";
 
 function UpdateCityForm({ onClose, onSuccess, city, selectedCountryId }) {
   const [isActive, setIsActive] = useState(city?.active || true);
@@ -33,7 +34,7 @@ function UpdateCityForm({ onClose, onSuccess, city, selectedCountryId }) {
         setLoading(true);
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:5001/api/v1/admin/stateList?country=${selectedCountryId}`,
+          `${API_BASE_URL}/admin/stateList?country=${selectedCountryId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -101,7 +102,7 @@ const matchedState = states.find(state =>
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:5001/api/v1/admin/updateCity/${city._id}`,
+        `${API_BASE_URL}/admin/updateCity/${city._id}`,
         formData,
         {
           headers: {

@@ -5,13 +5,14 @@ import UpdateCountryForm from "./UpdateCountryForm";
 import axios from "axios";
 import toast from "react-hot-toast";
 import ConfirmationModal from "../../../components/ConfirmationModal";
+import { API_BASE_URL } from "../../../constant";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const fetchCountries = async () => {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      "http://localhost:5001/api/v1/admin/countryList",
+      `${API_BASE_URL}/admin/countryList`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -86,7 +87,7 @@ export default function Country() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5001/api/v1/admin/deleteCountry/${countryId}`,
+        `${API_BASE_URL}/admin/deleteCountry/${countryId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -4,6 +4,7 @@ import AddServiceForm from "./AddServiceForm";
 import axios from "axios";
 import toast from "react-hot-toast";
 import ConfirmationModal from "../../../components/ConfirmationModal";
+import { API_BASE_URL } from "../../../constant";
 
 export default function ServiceManagement() {
   const [categories, setCategories] = useState([]);
@@ -22,7 +23,7 @@ export default function ServiceManagement() {
   const getToken = () => localStorage.getItem("token");
   
   // API base URL
-  const API_URL = "http://localhost:5001/api/v1/admin";
+  const API_URL = `${API_BASE_URL}/admin`;
 
   // Load categories and services
   const loadData = async () => {

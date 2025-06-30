@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { ChevronDown, ChevronUp, X } from "lucide-react";
 import ConfirmationModal from "../../../components/ConfirmationModal";
+import { API_BASE_URL } from "../../../constant";
 
 function UpdateServiceForm({ service, onClose, onSuccess, onUnpublish }) {
   // State from AddServiceForm
@@ -37,13 +38,13 @@ function UpdateServiceForm({ service, onClose, onSuccess, onUnpublish }) {
     const fetchServicesAndCountries = async () => {
       try {
         const [categoriesRes, servicesRes, countriesRes] = await Promise.all([
-          axios.get(`http://localhost:5001/api/v1/admin/categoryList`, {
+          axios.get(`${API_BASE_URL}/admin/categoryList`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get(`http://localhost:5001/api/v1/admin/serviceList`, {
+          axios.get(`${API_BASE_URL}/admin/serviceList`, {
             headers: { Authorization: `Bearer ` + token }, // Ensure token is passed correctly
           }),
-          axios.get(`http://localhost:5001/api/v1/admin/countryList`, {
+          axios.get(`${API_BASE_URL}/admin/countryList`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -207,7 +208,7 @@ function UpdateServiceForm({ service, onClose, onSuccess, onUnpublish }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:5001/api/v1/user/updateService/${service._id}`,
+        `${API_BASE_URL}/user/updateService/${service._id}`,
         dataToSend, // Send the prepared data
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -240,7 +241,7 @@ function UpdateServiceForm({ service, onClose, onSuccess, onUnpublish }) {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `http://localhost:5001/api/v1/user/deleteService/${service._id}`, // Use the correct DELETE endpoint and service._id
+        `${API_BASE_URL}/user/deleteService/${service._id}`, // Use the correct DELETE endpoint and service._id
         {
           headers: {
             Authorization: `Bearer ${token}`,

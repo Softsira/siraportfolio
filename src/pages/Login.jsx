@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../constant";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5001/api/v1/auth/login", formData);
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, formData);
       setMessage(response.data.message);
       setSuccess(response.data.success);
 

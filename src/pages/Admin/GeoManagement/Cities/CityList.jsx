@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import ConfirmationModal from "../../../../components/ConfirmationModal";
 import AddCityForm from "./AddCityForm";
 import UpdateCityForm from "./UpdateCityForm";
+import { API_BASE_URL } from "../../../../constant";
 
 export default function CityList({ selectedCountry, searchTerm }) {
   const [cities, setCities] = useState([]);
@@ -40,7 +41,7 @@ const handleAddCity = (newCity) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5001/api/v1/admin/deleteCity/${cityId}`,
+        `${API_BASE_URL}/admin/deleteCity/${cityId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,7 +69,7 @@ const fetchCities = async () => {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      `http://localhost:5001/api/v1/admin/cityList?country=${selectedCountry._id}`,
+      `${API_BASE_URL}/admin/cityList?country=${selectedCountry._id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

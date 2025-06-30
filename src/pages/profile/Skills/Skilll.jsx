@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AddSkillForm from "./AddSkillForm";
+import { API_BASE_URL } from "../../../constant";
 
 export default function Skilll() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Skilll() {
   const fetchSkills = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5001/api/v1/user/about", {
+      const res = await axios.get(`${API_BASE_URL}/user/about`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSkills(res.data.data.skills || []);

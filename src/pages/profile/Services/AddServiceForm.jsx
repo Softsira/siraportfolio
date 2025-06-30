@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { ChevronDown, ChevronUp, X } from "lucide-react"; // Import Chevron and X (for close) icons
+import { API_BASE_URL } from "../../../constant";
 
 function AddServiceForm({ onClose, onSuccess }) {
   const [currentView, setCurrentView] = useState("mainForm"); // 'mainForm' or 'serviceSelection'
@@ -33,13 +34,13 @@ function AddServiceForm({ onClose, onSuccess }) {
     const fetchServices = async () => {
       try {
         const [categoriesRes, servicesRes, countriesRes] = await Promise.all([
-          axios.get(`http://localhost:5001/api/v1/admin/categoryList`, {
+          axios.get(`${API_BASE_URL}/admin/categoryList`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get(`http://localhost:5001/api/v1/admin/serviceList`, {
+          axios.get(`${API_BASE_URL}/admin/serviceList`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get(`http://localhost:5001/api/v1/admin/countryList`, {
+          axios.get(`${API_BASE_URL}/admin/countryList`, {
             // Fetch countries
             headers: { Authorization: `Bearer ${token}` },
           }),
@@ -182,7 +183,7 @@ function AddServiceForm({ onClose, onSuccess }) {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:5001/api/v1/user/addService",
+        `${API_BASE_URL}/user/addService`,
         dataToSend,
         {
           headers: {

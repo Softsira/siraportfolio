@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import AddServiceForm from "./AddServiceForm";
 import UpdateServiceForm from "./UpdateServiceForm";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../../constant";
 
 function Service() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function Service() {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:5001/api/v1/user/services",
+          `${API_BASE_URL}/user/services`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
