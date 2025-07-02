@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-rou
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import LandingPage from "./pages/LandingPage";
-import Profile from "./pages/profile/profile";
+import Profile from "./pages/profile/Profile";
 import EducationList from "./pages/profile/Education/EducationList";
 import ExperienceList from "./pages/profile/Experience/ExperienceList";
 import About from "./pages/profile/About/About";
